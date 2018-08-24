@@ -36,4 +36,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.listen(8080, function () {
+    console.log("Express server listening on port %d in development mode", 8080);
+});
+
 module.exports = app;
