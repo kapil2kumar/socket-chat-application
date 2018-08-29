@@ -3,6 +3,16 @@
 
 This is a Hospital Demo Project implementation in Node.js using MongoDB and Socket written in JavaScript.
 
+## Feature
+
+	· Three types of authentication : Admin, Doctor and Patient. A simplistic yet effective approach to handle user roles. 
+
+	· Admin could add/edit/delete doctor or patient. 
+
+	· Patient can see the list of doctors and Doctors can see the list of patients, and admin can see both patient and doctor list.
+
+	· Patient and doctor can chat each other, admin can chat to both patients as well as doctor. (Socket connection for handling chats).
+
 ## Setup
 
 	Install Node
@@ -48,19 +58,3 @@ This is a Hospital Demo Project implementation in Node.js using MongoDB and Sock
 
 
 
-
-
-
-
-
-Install Node
-
-https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-
-Install MongoDB
-
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-
-Create database
-
-#hospital_demo
