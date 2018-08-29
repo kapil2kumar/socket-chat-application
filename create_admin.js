@@ -14,7 +14,7 @@ mongoose.connection.once('connected', function(err) {
     console.log("Connected to database");
     var User = require('./models/Users');
     var where={email:'admin@example.com'};
-    User.find(where, function (err, admin) {
+    User.findOne(where, function (err, admin) {
       if (err) { 
         console.log(err);
         process.exit(1);
