@@ -47,6 +47,8 @@ This is a Hospital Demo Project implementation in Node.js using MongoDB and Sock
 
 	Server will be available on port [http://localhost:8080](http://localhost:8080).
 
+	Admin Email admin@example.com Password 123456
+
 
 ## Support
 	I've written this script in my free time to learn node. If you find it useful, please support the project.
