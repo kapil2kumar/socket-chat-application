@@ -1,0 +1,72 @@
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <!-- <p><a href="#">Doctor</a></p>
+      <p><a href="#">Patient</a></p> -->
+    </div>
+    <div class="col-sm-8 text-left"> 
+    	<h1>Demo Project</h1>
+      <p>Welcome to Demo Project</p>
+
+
+
+      <p>Patient List</p> 
+      <table class="table table-custom table-striped mt-20 default-width" ng-if="patientList.length>0">
+        <thead>
+        <tr>
+        <th>Name</th>
+        <th>Email</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr ng-repeat="patient in patientList">
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.email}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+      
+      
+    </div>
+
+        <div class="col-sm-2 sidenav" >
+      <p ng-controller="AuthCtrl" ng-show="getToken()">
+        <span>{{getName()}}</span><br>
+        <a href="" ng-click="logOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+      </p>
+      <hr>
+      <div >
+        <div class="well">
+          <p>Online Users</p>
+          <ul>
+            <li ng-repeat="user in onlineUser" >
+                <p>User:{{ user.name }} Status:{{user.status}} <br><span ng-click="chatStart(user._id,user.name)">Click to Chat</span></p>
+            </li>
+          </ul>
+        </div>
+        <div class="well" ng-show="showChatDiv">
+          <p>Chat</p>
+
+          <ul id="messages">
+              <li ng-repeat="msg in chatMessage" >
+                  <p>{{msg.msg}} &nbsp;&nbsp;&nbsp;({{msg.name}})</p>
+              </li>
+          </ul>
+          <br>
+
+          <form name ="login" class="form-inline" id="chat_window" ng-submit="sendMessage()" style="width: 82%; margin: 0px 0px 0px -29px;">
+            <input name="send_msg" type="text" class="form-control" id="send_msg" required="" ng-model="send_msg.msg">
+            <input name="_id" type="hidden" class="form-control" id="sender_id" required="" ng-model="send_msg.sender_user">
+            <input name="_id" type="hidden" class="form-control" id="reciver_id" required="" ng-model="send_msg.receiver_user">
+            <button type="submit" class="btn btn-default" >Save</button>
+          </form>  
+
+        </div>   
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>

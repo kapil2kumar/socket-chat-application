@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hospitalApp">
+<head>
+  
+  <title ng-bind="title">Hospital Demo</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/css/lib/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/lib/font-awesome.css" />
+  <link rel="stylesheet" href="/css/lib/jquery-ui.css" />
+  <link rel="stylesheet" href="/css/custom/style.css" />
+
+  <script src="/js/lib/angular_socket_io/mock/socket-io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  
+  <script src="/js/lib/jquery-1.12.4.js"></script>
+  <script src="/js/lib/jquery-ui.js"></script>
+  <script src="/js/lib/angular.min.js"></script>
+  <script src="/js/lib/angular-route.js"></script>
+  
+  <script src="/js/custom/script.js"></script>
+  <script src="/js/custom/controller/authCtrl.js"></script>
+  <script src="/js/custom/controller/userController.js"></script>
+  <script src="/js/custom/controller/adminController.js"></script>
+  <script src="/js/custom/controller/doctorController.js"></script>
+  <script src="/js/custom/controller/patientController.js"></script>
+  <script src="/js/custom/factory/auth.js"></script>
+  
+  <script src="/js/lib/angular_socket_io/socket.js"></script> 
+
+
+  <style>
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+      ul { list-style-type: none; margin: 0; padding: 0; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+  
+</head>
+<body>
+
+<div ng-view></div>  
+
+</body>
+</html>
