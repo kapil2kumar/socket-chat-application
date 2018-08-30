@@ -12,7 +12,7 @@ hospitalApp.controller('patientController', function($scope,$window,$http,$locat
         'Authorization': auth.getToken(),
         'Accept': 'application/json'
     };
-    console.log(headers);
+    // console.log(headers);
 
 
     $scope.getDoctorList = function() {
@@ -25,14 +25,14 @@ hospitalApp.controller('patientController', function($scope,$window,$http,$locat
         }
 
         $http(req).then(function(response){
-            console.log(response);
+            // console.log(response);
             if (response.data.status == true) {
                 $scope.doctorList=response.data.data;
             } else {
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
 
@@ -45,7 +45,7 @@ hospitalApp.controller('patientController', function($scope,$window,$http,$locat
 
      mySocket.socket.on('auth_response',function(authResponse) {
       authResponse=JSON.parse(authResponse);
-      console.log('authResponse',authResponse);
+      // console.log('authResponse',authResponse);
       if (authResponse.status !=true) {
         mySocket.disconnect();
         console.log('disconnected');
@@ -96,7 +96,7 @@ hospitalApp.controller('patientController', function($scope,$window,$http,$locat
 
 
     $scope.sendMessage = function() {
-        console.log($scope.send_msg);
+        // console.log($scope.send_msg);
         $scope.chatMessage.push({msg:$scope.send_msg.msg,name:'You'});
         //send socket
         mySocket.socket.emit('message:send', JSON.stringify($scope.send_msg));

@@ -2,7 +2,7 @@ hospitalApp.controller('userController', function($scope,$window,$http,$location
    
     if(auth.getToken() != null){
         var userDetail=auth.getUser();
-        console.log('userDetail',userDetail);
+        // console.log('userDetail',userDetail);
         if (userDetail.role == 'admin') {
             $location.path('/admin'); return false;
         } else if (userDetail.role == 'doctor') {
@@ -23,7 +23,7 @@ hospitalApp.controller('userController', function($scope,$window,$http,$location
                 $scope.userData = response.user;
                 $window.localStorage['userData']=$scope.userData;
                 $scope.user=response.userData;
-                console.log($scope.user);
+                // console.log($scope.user);
                 if ($scope.user.role == 'admin') {
                     $location.path('/admin'); return false;
                 } else if ($scope.user.role == 'doctor') {

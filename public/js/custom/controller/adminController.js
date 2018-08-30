@@ -16,7 +16,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
         'Authorization': auth.getToken(),
         'Accept': 'application/json'
     };
-    console.log(headers);
+    // console.log(headers);
 
 
     $scope.getDoctorList = function() {
@@ -29,14 +29,14 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
         }
 
         $http(req).then(function(response){
-            console.log(response);
+            // console.log(response);
             if (response.data.status == true) {
                 $scope.doctorList=response.data.data;
             } else {
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
 
@@ -58,7 +58,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
 
@@ -77,7 +77,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
     };
 
     $scope.userAdd = function() {
-        console.log($scope.add);
+        // console.log($scope.add);
         var req = {
          method: 'POST',
          url: '/addUser',
@@ -99,7 +99,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
 
@@ -123,7 +123,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
 
@@ -131,7 +131,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
     };
 
     $scope.userUpdate = function() {
-        console.log($scope.update);
+        // console.log($scope.update);
         var req = {
          method: 'POST',
          url: '/updateUser',
@@ -153,7 +153,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
 
@@ -178,7 +178,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
         });
@@ -186,7 +186,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
 
     mySocket.socket.on('auth_response',function(authResponse) {
       authResponse=JSON.parse(authResponse);
-      console.log('authResponse',authResponse);
+      // console.log('authResponse',authResponse);
       if (authResponse.status !=true) {
         mySocket.disconnect();
         console.log('disconnected');
@@ -237,7 +237,7 @@ hospitalApp.controller('adminController', function($scope,$window,$http,$locatio
 
 
     $scope.sendMessage = function() {
-        console.log($scope.send_msg);
+        // console.log($scope.send_msg);
         $scope.chatMessage.push({msg:$scope.send_msg.msg,name:'You'});
         //send socket
         mySocket.socket.emit('message:send', JSON.stringify($scope.send_msg));

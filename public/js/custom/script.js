@@ -37,27 +37,36 @@ hospitalApp.factory('mySocket', function ($window,$location,socketFactory) {
     var myIoSocket = io.connect('http://127.0.0.1:8080');  
     myIoSocket.on('connect', function () {
         console.log('connect');
-        var token=$window.localStorage['userData'];
-        if (token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace('-', '+').replace('_', '/');
-            LoginUser=JSON.parse(window.atob(base64));
-            var authenticate = JSON.stringify({"token" : token,"_id" : LoginUser._id,"role": LoginUser.role,"name": LoginUser.name});
-            console.log('authenticate',authenticate);
-            myIoSocket.emit('authentication', authenticate);    
-        } else {
-            myIoSocket.destroy();   
-        }
-        
     });
+    
+    var token=$window.localStorage['userData'];
+    if (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        LoginUser=JSON.parse(window.atob(base64));
+        var authenticate = JSON.stringify({"token" : token,"_id" : LoginUser._id,"role": LoginUser.role,"name": LoginUser.name});
+        console.log('authenticate',authenticate);
+        myIoSocket.emit('authentication', authenticate);    
+    } else {
+        myIoSocket.destroy();   
+    }
     
     var socket = socketFactory({
         ioSocket: myIoSocket
     });
     this.reConnect = function (){
         var myIoSocket = io.connect(baseURL);
-        myIoSocket.on('connect', function () {authenticate});
-        myIoSocket.emit('authentication', authenticate);
+        myIoSocket.on('connect', function () {
+
+        });
+        var token=$window.localStorage['userData'];
+        if (token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace('-', '+').replace('_', '/');
+            LoginUser=JSON.parse(window.atob(base64));
+            var authenticate = JSON.stringify({"token" : token,"_id" : LoginUser._id,"role": LoginUser.role,"name": LoginUser.name});
+            myIoSocket.emit('authentication', authenticate);    
+        }
     }
     this.disconnect = function (){
         myIoSocket.emit('socket:disconnect',JSON.stringify({}));

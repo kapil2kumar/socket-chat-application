@@ -43,11 +43,13 @@ This is a Hospital Demo Project implementation in Node.js using MongoDB and Sock
 		$ node create_admin.js
 
 	4. Start the application
-		$ node app.js
+		$ npm start or node app.js
 
 	Server will be available on port [http://localhost:8080](http://localhost:8080).
 
-	Admin Email admin@example.com Password 123456
+	Admin Login 
+		Email: admin@example.com 
+		Password: 123456
 
 
 ## Support

@@ -11,7 +11,7 @@ hospitalApp.controller('doctorController', function($scope,$window,$http,$locati
         'Authorization': auth.getToken(),
         'Accept': 'application/json'
     };
-    console.log(headers);
+    // console.log(headers);
 
 
     $scope.getPatientList = function() {
@@ -29,7 +29,7 @@ hospitalApp.controller('doctorController', function($scope,$window,$http,$locati
                 $scope.message = response.data.message;
             }
         }, function(error){
-            console.log(error);
+            // console.log(error);
             $scope.message = error.data.message;
             auth.isAuthenticated(error);
         });
@@ -39,7 +39,7 @@ hospitalApp.controller('doctorController', function($scope,$window,$http,$locati
 
     mySocket.socket.on('auth_response',function(authResponse) {
       authResponse=JSON.parse(authResponse);
-      console.log('authResponse',authResponse);
+      // console.log('authResponse',authResponse);
       if (authResponse.status !=true) {
         mySocket.disconnect();
         console.log('disconnected');
@@ -90,7 +90,7 @@ hospitalApp.controller('doctorController', function($scope,$window,$http,$locati
 
 
     $scope.sendMessage = function() {
-        console.log($scope.send_msg);
+        // console.log($scope.send_msg);
         $scope.chatMessage.push({msg:$scope.send_msg.msg,name:'You'});
         //send socket
         mySocket.socket.emit('message:send', JSON.stringify($scope.send_msg));
