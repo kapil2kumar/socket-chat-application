@@ -6,7 +6,7 @@ This is a Basic Multi Window Chat Authentication Project implementation in Node.
 Socket.IO enables real-time, bidirectional and event-based communication.
 
 
-#Example
+## Example
 Hospital Demo
 Chat message implementation for hospital
 
