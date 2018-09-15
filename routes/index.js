@@ -337,17 +337,17 @@ exports.socket_module=function(io){
             var messageSend          = JSON.parse(messageSend);
             var receiver_user=messageSend.receiver_user;
             var msg=messageSend.msg;
-            console.log('message:send','messageSend.sender_user',messageSend.sender_user);
+            // console.log('message:send','messageSend.sender_user',messageSend.sender_user);
 
             var sender_user_name=messageSend.sender_user.name;
-
+            var sender_user_id=messageSend.sender_user._id;
 
             console.log('message:send','messageSend',messageSend);
             //get socket id of reciver
             getMessageReciverSocketId(receiver_user,function(socketid){
               if (socketid) {
-                console.log('message:receive','receive',{msg:msg,name:sender_user_name});
-                clients[socketid].emit('message:receive',JSON.stringify({msg:msg,name:sender_user_name}));    
+                console.log('message:receive','receive',{_id:sender_user_id,msg:msg,name:sender_user_name});
+                clients[socketid].emit('message:receive',JSON.stringify({_id:sender_user_id,msg:msg,name:sender_user_name}));    
               }
             });           
         });
@@ -358,7 +358,7 @@ exports.socket_module=function(io){
                 var date = new Date().toString();
                 console.log("socket client disconnect [ "+socketID+" ]  at "+ date +" Status :->"+message);
                 if (disconnectUser._id) {
-                  disconnectUser.Status='offline';
+                  disconnectUser.status='offline';
                   updateOnlineUserofOnlineClients(disconnectUser.role,disconnectUser,function(message){
                     console.log(message);
                   });  
@@ -372,7 +372,7 @@ exports.socket_module=function(io){
                 var date = new Date().toString();
                 console.log("socket client disconnect [ "+socketID+" ]  at "+ date +" Status :->"+message);
                 if (disconnectUser._id) {
-                  disconnectUser.Status='offline';
+                  disconnectUser.status='offline';
                   updateOnlineUserofOnlineClients(disconnectUser.role,disconnectUser,function(message){
                     console.log(message);
                   });  
@@ -429,7 +429,7 @@ var removeSocketClient = function (socket,callback) {
     } else {
         var message="socket client not found";
     }
-    callback(message,disconnectUser);
+    callback(disconnectUser,message);
     // console.log(socketIdList);
 };
 
@@ -482,13 +482,13 @@ var updateOnlineUserofOnlineClients = function (role,data,callback) {
             updateUser.push(val);     
           }
         } else if (val.role == 'doctor') {
-          if (role == 'patient') {
+          if (role != 'doctor') {
             var decoded={'status':true,'data':data};
             clients[val._id].emit('user/online:update',JSON.stringify(decoded));  
             updateUser.push(val);     
           }
         } else if (val.role == 'patient') {
-          if (role == 'doctor') {
+          if (role != 'patient') {
             var decoded={'status':true,'data':data};
             clients[val._id].emit('user/online:update',JSON.stringify(decoded)); 
             updateUser.push(val);          

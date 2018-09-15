@@ -41,11 +41,11 @@
           <p>Online Users</p>
           <ul>
             <li ng-repeat="user in onlineUser" >
-                <p>User:{{ user.name }} Status:{{user.status}} <br><span ng-click="chatStart(user._id,user.name)">Click to Chat</span></p>
+                <p>User:{{ user.name }} Status:{{user.status}} <br><span style="cursor:pointer;color: green;" ng-click="chatStart(user._id,user.name)">Click to Chat</span></p>
             </li>
           </ul>
         </div>
-        <div class="well" ng-show="showChatDiv">
+        <!-- <div class="well" ng-show="showChatDiv">
           <p>Chat</p>
 
           <ul id="messages">
@@ -62,11 +62,35 @@
             <button type="submit" class="btn btn-default" >Save</button>
           </form>  
 
-        </div>   
+        </div>    -->
 
 
       </div>
       
     </div>
   </div>
+
+  <div class="row show-chat-box">
+    
+      <div class="col-md-4" ng-repeat="userchat in onlineUser track by $index" ng-show="userchat.showChatDiv">
+          
+          <div class="well" >
+              <p>Chat with {{userchat.name}}</p>
+              <ul id="messages">
+                  <li ng-repeat="msg in chatMessage" ng-if="userchat._id == msg._id">
+                      <p>{{msg.msg}} &nbsp;&nbsp;&nbsp;({{msg.name}})</p>
+                  </li>
+              </ul>
+              <br>
+            </div>  
+
+            <form name ="chat-form" class="form-inline" id="chat_window_{{userchat._id}}" ng-submit="sendMessage(userchat._id)" >
+                <input name="send_msg" type="text" class="form-control" id="send_msg_{{userchat._id}}" required="" ng-model="onlineUser[$index].send_msg.msg">
+                <input name="_id" type="hidden" class="form-control" id="sender_id_{{userchat._id}}" required="" ng-model="onlineUser[$index].send_msg.sender_user">
+                <input name="_id" type="hidden" class="form-control" id="reciver_id_{{userchat._id}}" required="" ng-model="onlineUser[$index].send_msg.receiver_user">
+                <button type="submit" class="btn btn-default" >Save</button>
+              </form>   
+      </div>
+  </div>
+
 </div>

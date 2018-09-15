@@ -33,8 +33,12 @@ hospitalApp.run(['$location', '$rootScope', function($location, $rootScope) {
 }]);
 
 hospitalApp.factory('mySocket', function ($window,$location,socketFactory) {
-  
-    var myIoSocket = io.connect('http://127.0.0.1:8080');  
+    // console.log($location);
+    var host=location.host;
+    var port=location.port;
+    var hostUrl='http://'+host;
+    console.log(hostUrl);
+    var myIoSocket = io.connect(hostUrl);  
     myIoSocket.on('connect', function () {
         console.log('connect');
     });
@@ -48,7 +52,10 @@ hospitalApp.factory('mySocket', function ($window,$location,socketFactory) {
         console.log('authenticate',authenticate);
         myIoSocket.emit('authentication', authenticate);    
     } else {
-        myIoSocket.destroy();   
+        console.log('token not found');
+        // myIoSocket.destroy();   
+        // $window.location.reload();
+
     }
     
     var socket = socketFactory({
@@ -69,7 +76,10 @@ hospitalApp.factory('mySocket', function ($window,$location,socketFactory) {
         }
     }
     this.disconnect = function (){
-        myIoSocket.emit('socket:disconnect',JSON.stringify({}));
+        // myIoSocket.emit('socket:disconnect',JSON.stringify({}));
+        myIoSocket.destroy();   
+        $window.location.reload();
+
         // myIoSocket.destroy();
     }
     return {
