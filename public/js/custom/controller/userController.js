@@ -39,7 +39,7 @@ hospitalApp.controller('userController', function($scope,$window,$http,$location
         })
         .error(function(error) {
             console.log(error);
-            $scope.message = error.data.message;
+            $scope.message = error.message;
             
         });
     };
