@@ -1,7 +1,14 @@
 
-# Hospital Demo
+# Socket Chat Application
 
-This is a Hospital Demo Project implementation in Node.js using MongoDB and Socket written in JavaScript.
+This is a Basic Multi Window Chat Authentication Project implementation in Node.js MongoDB and Socket written in JavaScript.
+
+Socket.IO enables real-time, bidirectional and event-based communication.
+
+
+#Example
+Hospital Demo
+Chat message implementation for hospital
 
 ## Feature
 
@@ -33,8 +40,8 @@ This is a Hospital Demo Project implementation in Node.js using MongoDB and Sock
 	Make sure you have Node.js and npm installed.
 
 	1. Clone or Download the repository
-		$ https://github.com/kapil2kumar/hospital_demo.git
-		$ cd hospital_demo
+		$ https://github.com/kapil2kumar/socket-chat-application.git
+		$ cd socket-chat-application
 
 	2. Install Dependencies
 		$ npm install
